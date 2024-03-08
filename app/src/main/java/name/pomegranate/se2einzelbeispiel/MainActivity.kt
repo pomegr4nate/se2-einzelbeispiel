@@ -58,7 +58,7 @@ fun NetworkTestView() {
 
 @Composable
 fun Header() {
-    Column (
+    Column(
         modifier = Modifier
             .fillMaxWidth()
             .background(MaterialTheme.colorScheme.primary)
@@ -91,13 +91,13 @@ fun Form() {
 
         TextField(
             value = matrikelnummer,
-            onValueChange = {matrikelnummer = it},
-            label = { Text(text = "Matrikelnummer")},
+            onValueChange = { matrikelnummer = it },
+            label = { Text(text = "Matrikelnummer") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .padding(10.dp)
-            )
+        )
 
         Text(
             text = "Antwort vom Server:",
@@ -122,13 +122,13 @@ fun Form() {
                 .padding(10.dp)
         )
 
-        val scope = CoroutineScope(Dispatchers.IO)
+        val ioscope = CoroutineScope(Dispatchers.IO)
 
         Button(
             onClick = {
-                      scope.launch {
-                          result = NetHelper.getFromServer(matrikelnummer)
-                      }
+                ioscope.launch {
+                    result = NetHelper.getFromServer(matrikelnummer)
+                }
             },
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)

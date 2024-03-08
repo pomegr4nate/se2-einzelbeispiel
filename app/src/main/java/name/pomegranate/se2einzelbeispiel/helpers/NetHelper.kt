@@ -3,6 +3,7 @@ package name.pomegranate.se2einzelbeispiel.helpers
 import java.io.BufferedReader
 import java.io.DataOutputStream
 import java.io.InputStreamReader
+import java.lang.Exception
 import java.net.Socket
 
 class NetHelper {
@@ -12,20 +13,26 @@ class NetHelper {
 
         fun getFromServer(matrikelnummer: String): String {
 
-            val socket = Socket(DOMAIN, PORT)
+            var result: String
 
-            val output = DataOutputStream(socket.getOutputStream())
-            val input = BufferedReader(InputStreamReader(socket.getInputStream()))
+            try {
+                val socket = Socket(DOMAIN, PORT)
 
-            // \n is needed to get an answer from the server
-            output.writeBytes(matrikelnummer + '\n')
+                val output = DataOutputStream(socket.getOutputStream())
+                val input = BufferedReader(InputStreamReader(socket.getInputStream()))
 
-            val result = input.readLine()
+                // \n is needed to get an answer from the server
+                output.writeBytes(matrikelnummer + '\n')
 
-            // Close readers and socket
-            input.close()
-            output.close()
-            socket.close()
+                result = input.readLine()
+
+                // Close readers and socket
+                input.close()
+                output.close()
+                socket.close()
+            } catch (e: Exception) {
+                result = "ERROR: ${e.localizedMessage}"
+            }
 
             return result
         }

@@ -5,7 +5,7 @@ import java.util.Comparator
 class SortHelper {
     companion object {
         // 12203558 mod 7 = 3
-        fun sortMatrikelnummer(matrikelnummer: String) : String {
+        fun sortMatrikelnummer(matrikelnummer: String): String {
 
             // The string can be converted to a byte array, as this makes the comparison easier
             var bytes = matrikelnummer.toByteArray()
@@ -32,7 +32,7 @@ class SortHelper {
                         return -1
                     }
                 } else {
-                    if(o2 % 2 == 0) {
+                    if (o2 % 2 == 0) {
                         // o1 is odd, o2 is even
                         return 1
                     }
