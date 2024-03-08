@@ -26,6 +26,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.text.isDigitsOnly
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -91,7 +92,12 @@ fun Form() {
 
         TextField(
             value = matrikelnummer,
-            onValueChange = { matrikelnummer = it },
+            onValueChange = {
+                // Only allow digits to be input
+                if (it.isDigitsOnly()) {
+                    matrikelnummer = it
+                }
+            },
             label = { Text(text = "Matrikelnummer") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = Modifier
