@@ -65,7 +65,7 @@ fun Header() {
             .background(MaterialTheme.colorScheme.primary)
     ) {
         Text(
-            text = "SE2 NetworkTest",
+            text = "SE2 Einzelbeispiel",
             style = MaterialTheme.typography.headlineMedium,
             color = MaterialTheme.colorScheme.onPrimary,
             modifier = Modifier
@@ -106,12 +106,12 @@ fun Form() {
         )
 
         Text(
-            text = "Antwort vom Server:",
+            text = "Ergebnis:",
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(10.dp, top = 30.dp)
+                .padding(10.dp)
         )
 
         var result by rememberSaveable {
@@ -145,7 +145,7 @@ fun Form() {
 
         Button(
             onClick = {
-                matrikelnummer = SortHelper.sortMatrikelnummer(matrikelnummer)
+                result = SortHelper.sortMatrikelnummer(matrikelnummer)
             },
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
